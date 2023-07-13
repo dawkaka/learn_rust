@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn main() {
     let mut v: Vec<String> = Vec::new();
     v.push(String::from("hello"));
@@ -56,5 +58,17 @@ fn main() {
     let hindi = String::from("नमस्ते");
     for h in hindi.chars() {
         print!("{h}");
+    }
+
+    let mut scores: HashMap<String, i32> = HashMap::new();
+    scores.insert("Blue".to_string(), 10);
+    scores.insert("Yellow".to_string(), 50);
+
+    let team_name = String::from("Blue");
+    let score = scores.get(&team_name).copied().unwrap_or(0);
+    println!("{score}");
+
+    for (key, value) in &scores {
+        println!("{key}: {value}");
     }
 }
