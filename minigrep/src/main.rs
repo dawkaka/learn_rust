@@ -1,10 +1,14 @@
+use minigrep::{run, Config};
 use std::env;
+use std::process;
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() < 3 {
-        panic!("Not enough arguments!");
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
+    if let Err(e) = run(config) {
+        eprintln!("Application error: {}", e);
+        process::exit(1);
     }
-    let query = &args[1];
-    let file_path = &args[2];
-    println!("query: {}, file_path: {}", query, file_path);
 }
