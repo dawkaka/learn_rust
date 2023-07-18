@@ -4,5 +4,6 @@ use Crates_More::PrimaryColor;
 fn main() {
     let red = PrimaryColor::Red;
     let yellow = PrimaryColor::Yellow;
-    mix(red, yellow);
+    let ms = mix(red, yellow);
+    println!("{:?}", ms)
 }

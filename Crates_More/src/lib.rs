@@ -1,9 +1,9 @@
 pub use self::kinds::PrimaryColor;
 pub use self::kinds::SecondaryColor;
 pub use self::utils::mix;
-
 pub mod kinds {
     /// The primary colors according to the RYB color model.
+    #[derive(Debug)]
     pub enum PrimaryColor {
         Red,
         Yellow,
@@ -11,6 +11,7 @@ pub mod kinds {
     }
 
     /// The secondary colors according to the RYB color model.
+    #[derive(Debug)]
     pub enum SecondaryColor {
         Orange,
         Green,
@@ -25,6 +26,14 @@ pub mod utils {
     /// a secondary color.
     pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -> SecondaryColor {
         // --snip--
-        unimplemented!()
+        match c1 {
+            PrimaryColor::Red => match c2 {
+                PrimaryColor::Yellow => SecondaryColor::Orange,
+                _ => SecondaryColor::Purple,
+            },
+            _ => SecondaryColor::Green,
+        };
+
+        SecondaryColor::Purple
     }
 }
